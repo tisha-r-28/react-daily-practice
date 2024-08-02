@@ -1,15 +1,18 @@
-import React, { useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 
 function App() {
-    const nameInput = useRef(null);
-    const handleClick = () => {
-        console.log(nameInput.current.value);
-    }
+    const inputRef = useRef(null)
+    useEffect(() => {
+        console.log(inputRef.current.value);
+    }, [])
+    useLayoutEffect(() => {
+        inputRef.current.value = "Hello";
+    }, [])
     return (
         <>
             <div>
-                <input type="text" name="name" id="name" placeholder="Enter name ..." ref={nameInput} />
-                <button onClick={() => { handleClick() }}>Change the name</button>
+                <h1>Practice hooks</h1>
+                <input type="text" name="name" id="name" placeholder="Name" value="Tisha" ref={inputRef}/>
             </div>
         </>
     );
